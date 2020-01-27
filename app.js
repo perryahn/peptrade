@@ -1,8 +1,8 @@
-const Alpaca = require('@alpacahq/alpaca-trade-api');
+const dotenv = require('dotenv');
+dotenv.config();
 
-const alpaca = new Alpaca({
-    keyId: ,
-    secretKey: ,
-    paper: true,
-});
+const ApiClient = require('./lib/alpacastuff/ApiClient');
 
+const client = new ApiClient();
+
+client.account();
