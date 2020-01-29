@@ -2,13 +2,19 @@
   "name": "alpaca",
   "version": "1.0.0",
   "description": "alpaca api integration and api endpoint for website",
-  "main": "app.js",
+  "main": "./server/server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "perry ahn",
   "license": "ISC",
   "dependencies": {
-    "@alpacahq/alpaca-trade-api": "^1.2.7"
-  }
+    "@alpacahq/alpaca-trade-api": "^1.2.7",
+    "express": "^4.17.1",
+    "morgan": "^1.9.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.2"
+  },
+  "proxy": "http://localhost:3001/"
 }
