@@ -1,6 +1,7 @@
 const dotenv = require('dotenv');
 const express = require('express');
 const logger = require('morgan');
+const path = require('path');
 
 const apiRouter = require('./routes/apiRouter');
 
@@ -15,6 +16,12 @@ app.use(logger('dev'));
 const port = process.env.PORT || 3001;
 
 app.use('/api', apiRouter);
+
+app.use('/client', express.static(path.join(__dirname, '../build')));
+
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, '../client/content/views/', 'index.html'));
+});
 
 app.listen(port);
 
