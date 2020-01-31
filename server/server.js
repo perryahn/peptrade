@@ -19,7 +19,7 @@ app.use('/api', apiRouter);
 
 app.use('/client', express.static(path.join(__dirname, '../build')));
 
-app.get('/', (req, res) => {
+app.get('/', (_req, res) => {
   res.sendFile(path.join(__dirname, '../client/content/views/', 'index.html'));
 });
 
