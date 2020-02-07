@@ -1,0 +1,63 @@
+// main: ./app.less
+@pa_primary: #f5ab0b;
+
+#Main {
+  font-family: 'Shadows Into Light', cursive;
+
+  a {
+    text-decoration: none;
+  }
+}
+
+.loadAppear {
+  @keyframes appear {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+
+  animation: 0.7s ease-in 0s 1 appear;
+}
+
+.pa_badge {
+  width: 230px;
+  height: 230px;
+  text-align: center;
+  border: 8px solid @pa_primary;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  clip-path: polygon(
+    calc(0% + 4px) calc(0% + 4px),
+    calc(100% - 4px) calc(0% + 4px),
+    calc(100% - 4px) calc(100% - 4px),
+    calc(0% + 4px) calc(100% - 4px),
+  );
+
+  transition: clip-path 0.1s linear;
+
+  .loadAppear();
+
+  .pa_badge_label {
+    font-size: 24px;
+  }
+
+  .pa_badge_content {
+    font-size: 20px;
+    min-height: 20px;
+  }
+}
+
+.pa_badge:hover {
+  clip-path: polygon(
+    0 0,
+    100% 0,
+    100% 100%,
+    0 100%
+  )
+}

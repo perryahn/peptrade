@@ -10,9 +10,25 @@ class ApiClient {
   }
 
   async account() {
+    let result = null;
+
     await this.alpaca.getAccount().then((res) => {
-      console.log(res);
+      result = res;
     });
+
+    return result;
+  }
+
+  async activities(types) {
+    let result = null;
+
+    await this.alpaca.getAccountActivities({
+      activityTypes: [],
+    }).then((res) => {
+      result = res;
+    });
+
+    return result;
   }
 }
 
