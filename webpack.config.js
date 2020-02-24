@@ -44,6 +44,9 @@ module.exports = () => {
     },
     devServer: {
       contentBase: path.resolve(__dirname, 'build'),
+      historyApiFallback: {
+        index: 'http://localhost:8080',
+      },
       hot: true,
       host: 'localhost',
       port: 8080,

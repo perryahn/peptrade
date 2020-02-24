@@ -11,4 +11,8 @@ router.get('/portfolio', (_req, res) => {
   res.sendFile(path.join(__dirname, '../../client/content/views/', 'index.html'));
 });
 
+router.get('/peptrade', (_req, res) => {
+  res.sendFile(path.join(__dirname, '../../client/content/views/', 'index.html'));
+});
+
 module.exports = router;

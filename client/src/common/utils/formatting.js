@@ -18,4 +18,14 @@ export const dollar = (amount) => {
   return `$${formatMe.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')}`;
 };
 
+// one based - 0.33 is 33.00%,
+export const percent = (valueOneBased, fractionDigits) => (
+  Number(valueOneBased).toLocaleString(
+    undefined, {
+      style: 'percent',
+      minimumFractionDigits: fractionDigits || 2,
+    },
+  )
+);
+
 export default dollar;

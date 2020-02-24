@@ -3,8 +3,13 @@
 .pa_portfolio {
   display: flex;
   align-items: center;
+  .loadAppear();
 
-  .pa_portfolio_balance {
+  @media screen and (max-width: 767px) {
+    flex-direction: column;
+  }
+
+  &_balance {
     flex: 1;
   }
 }

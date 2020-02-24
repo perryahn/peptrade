@@ -3,7 +3,10 @@
   "rules": {
     "linebreak-style": 0,
     "no-unused-vars": 1,
-    "react/jsx-filename-extension": [1, { "extensions": [".js"]}]
+    "no-nested-ternary": 0,
+    "react/jsx-filename-extension": [1, { "extensions": [".js"]}],
+    "react/jsx-props-no-spreading": 0,
+    "react/forbid-prop-types": 0
   },
   "plugins": ["react-hooks"],
   "extends": ["airbnb"],

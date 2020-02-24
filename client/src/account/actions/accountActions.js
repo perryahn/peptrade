@@ -8,4 +8,10 @@ export const setAccountActivities = (data) => ({
   payload: data,
 });
 
+export const setPositions = (data) => ({
+  type: 'SET_POSITIONS',
+  payload: data,
+});
+
+
 export default setAccount;

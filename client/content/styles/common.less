@@ -1,12 +1,43 @@
 // main: ./app.less
 @pa_primary: #f5ab0b;
+@pa_secondary: #1cf7ff;
+@pa_danger: #cf2c2c;
+@pa_success: #37b341;
 
 #Main {
-  font-family: 'Shadows Into Light', cursive;
+  font-family: 'Itim';
+  overflow-x: hidden;
+  margin: 0 15vw;
+  
+  @media screen and (max-width: 767px) {
+    margin: 0;
+  }
+
+  @media screen and (min-width: 768px) and (max-width: 1366px) {
+    margin: 0;
+  }
 
   a {
     text-decoration: none;
   }
+}
+
+.pa_danger {
+  color: @pa_danger;
+}
+
+.pa_success {
+  color: @pa_success;
+}
+
+.pa_biggish {
+  font-size: 24px;
+  min-height: 24px;
+}
+
+.pa_mediumish {
+  font-size: 20px;
+  min-height: 20px;
 }
 
 .loadAppear {
@@ -19,7 +50,7 @@
     }
   }
 
-  animation: 0.7s ease-in 0s 1 appear;
+  animation: 0.6s ease-in 0s 1 appear;
 }
 
 .pa_badge {
@@ -41,23 +72,20 @@
 
   transition: clip-path 0.1s linear;
 
-  .loadAppear();
-
-  .pa_badge_label {
-    font-size: 24px;
-  }
-
-  .pa_badge_content {
-    font-size: 20px;
-    min-height: 20px;
+  &:hover {
+    clip-path: polygon(
+      0 0,
+      100% 0,
+      100% 100%,
+      0 100%
+    )
   }
 }
 
-.pa_badge:hover {
-  clip-path: polygon(
-    0 0,
-    100% 0,
-    100% 100%,
-    0 100%
-  )
+.pa_slideFeed {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
 }

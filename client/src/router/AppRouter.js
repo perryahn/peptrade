@@ -5,7 +5,8 @@ import { Main } from '../home/components/Main';
 export const AppRouter = () => (
   <Router>
     <Switch>
-      <Route path="/" component={Main} />
+      <Route exact path="/" component={Main} />
+      <Route exact path="/:view" render={(props) => <Main {...props} />} />
     </Switch>
   </Router>
 );

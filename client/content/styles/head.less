@@ -2,6 +2,7 @@
 
 #Head {
   display: flex;
+  align-items: center;
 
   .pa_headLogo {
     padding: 5px 0px 5px 3%;
@@ -12,8 +13,12 @@
       color: @pa_primary;
     }
 
-    .pa_headLogo_text {
+    &_text {
       .loadAppear();
     }
+  }
+
+  .pa_positionFeed {
+    margin-left: auto;
   }
 }

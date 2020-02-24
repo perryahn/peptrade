@@ -1,0 +1,22 @@
+// main: ./app.less
+
+.pa_positionFeed {
+  &_slideFeed {
+    width: 300px;
+    height: 150px;
+  }
+
+  &_slide {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    &_box {
+      border: 2px solid @pa_primary;
+      padding: 5px;
+      text-align: center;
+    }
+  }
+}

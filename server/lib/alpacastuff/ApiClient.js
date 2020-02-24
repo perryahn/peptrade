@@ -23,7 +23,43 @@ class ApiClient {
     let result = null;
 
     await this.alpaca.getAccountActivities({
-      activityTypes: [],
+      activityTypes: types || [],
+    }).then((res) => {
+      result = res;
+    });
+
+    return result;
+  }
+
+  async orders() {
+    let result = null;
+
+    await this.alpaca.getOrders().then((res) => {
+      result = res;
+    });
+
+    return result;
+  }
+
+  async positions() {
+    let result = null;
+
+    await this.alpaca.getPositions().then((res) => {
+      result = res;
+    });
+
+    return result;
+  }
+
+  async bars({
+    symbols, start, end,
+  }) {
+    let result = null;
+
+    await this.alpaca.getBars({
+      symbols,
+      start,
+      end,
     }).then((res) => {
       result = res;
     });

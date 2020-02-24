@@ -12,7 +12,10 @@
   "dependencies": {
     "@alpacahq/alpaca-trade-api": "^1.2.8",
     "@hot-loader/react-dom": "^16.11.0",
+    "csv-parse": "^4.8.5",
+    "data.js": "^0.12.11",
     "express": "^4.17.1",
+    "framer-motion": "^1.8.4",
     "morgan": "^1.9.1",
     "prop-types": "^15.7.2",
     "react": "^16.12.0",

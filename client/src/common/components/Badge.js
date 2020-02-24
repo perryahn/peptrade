@@ -20,22 +20,20 @@ const defaultProps = {
 
 export const Badge = ({
   label, text, children, className,
-}) => {
-  return (
-    <div className={`pa_badge${className ? ` ${className}` : ''}`}>
-      <div className="pa_badge_label">
-        <span>{label}</span>
-      </div>
-      <div className="pa_badge_content">
-        {
+}) => (
+  <div className={`pa_badge${className ? ` ${className}` : ''}`}>
+    <div className="pa_biggish">
+      <span>{label}</span>
+    </div>
+    <div className="pa_mediumish">
+      {
           children || (
             <span>{text}</span>
           )
         }
-      </div>
     </div>
-  );
-};
+  </div>
+);
 
 Badge.propTypes = propTypes;
 Badge.defaultProps = defaultProps;

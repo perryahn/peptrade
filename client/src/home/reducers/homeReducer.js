@@ -1,7 +1,13 @@
 export const reducer = (state = {
-  name: 'perry',
+  view: 'portfolio',
 }, action) => {
   switch (action.type) {
+    case 'SET_VIEW': {
+      return {
+        ...state,
+        view: action.payload,
+      };
+    }
     default:
   }
 
