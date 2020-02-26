@@ -37,6 +37,7 @@ const fetchReducer = (state, action) => {
 
 export const useFetch = ({
   url, type, data,
+  fetchingSyncCallback, resultSyncCallback,
 }) => {
   const [{ result, fetching, error }, dispatch] = useReducer(
     fetchReducer,
@@ -81,6 +82,18 @@ export const useFetch = ({
   useEffect(() => {
     fetchCallback();
   }, [fetchCallback]);
+
+  useEffect(() => {
+    if (fetchingSyncCallback) {
+      fetchingSyncCallback();
+    }
+  }, [fetching]);
+
+  useEffect(() => {
+    if (resultSyncCallback) {
+      resultSyncCallback();
+    }
+  }, [result]);
 
   return {
     result,

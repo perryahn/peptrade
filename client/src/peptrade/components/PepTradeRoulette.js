@@ -1,54 +1,39 @@
 import React, { useEffect, useState } from 'react';
-import PropTypes from 'prop-types';
+import { useDispatch, useSelector } from 'react-redux';
+// import PropTypes from 'prop-types';
 import { motion } from 'framer-motion';
+import { rouletteTick } from '../actions/pepTradeActions';
 
 const propTypes = {
-  sp500feed: PropTypes.arrayOf(PropTypes.object),
-  startRoulette: PropTypes.bool,
 };
 
 const defaultProps = {
-  sp500feed: [],
-  startRoulette: false,
 };
 
-export const PepTradeRoulette = ({
-  sp500feed, startRoulette,
-}) => {
-  const [currIdx, setCurrIdx] = useState(
-    Math.floor(Math.random() * (sp500feed.length - 1)),
-  );
+export const PepTradeRoulette = () => {
+  const dispatch = useDispatch();
+  const {
+    startedRoulette, spFeed,
+    ticks, interval, currIdx,
+  } = useSelector((state) => state.pepTrade);
 
-  const [ticks, setTicks] = useState(
-    Math.floor(30 + Math.random() * 10),
-  );
-
-  const [interval, setInterval] = useState(50);
-
+  // start in phases, aka ready... go
   const [startPhase, setStartPhase] = useState(0);
-
   useEffect(() => {
-    if (startRoulette && startPhase < 2) {
+    if (startedRoulette && startPhase < 2) {
       setTimeout(() => {
         setStartPhase(startPhase + 1);
       }, startPhase === 0 ? 1500 : 1500 / 2);
     }
-  }, [startRoulette, sp500feed, ticks, startPhase]);
+  }, [startedRoulette, spFeed, ticks, startPhase]);
 
   useEffect(() => {
-    if (startPhase === 2) {
-      if (ticks > 0) {
-        setTimeout(() => {
-          setTicks(ticks - 1);
-          setCurrIdx(Math.floor(Math.random() * (sp500feed.length - 1)));
-          setInterval(Math.min(700, interval
-            + (ticks < 5 ? 200 : (
-              Math.max(0, 30 - ticks / 2)
-            ))));
-        }, interval);
-      }
+    if (startPhase >= 2 && ticks > 0) {
+      setTimeout(() => {
+        dispatch(rouletteTick());
+      }, interval);
     }
-  }, [startPhase, sp500feed, ticks]);
+  }, [startPhase, spFeed, ticks]);
 
   return (
     <div className="pa_pepTrade_roulette">
@@ -73,8 +58,8 @@ export const PepTradeRoulette = ({
             </span>
           </motion.div>
         ) : (
-          sp500feed.length > 0 && (
-            <span>{sp500feed[currIdx].Name}</span>
+          spFeed.length > 0 && (
+            <span>{spFeed[currIdx].Name}</span>
           )
         )
       }

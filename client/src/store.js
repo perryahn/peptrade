@@ -1,5 +1,5 @@
 import { applyMiddleware, createStore, combineReducers } from 'redux';
-import logger from 'redux-logger';
+import { createLogger } from 'redux-logger';
 import thunk from 'redux-thunk';
 
 import home from './home/reducers/homeReducer';
@@ -8,8 +8,8 @@ import pepTrade from './peptrade/reducers/pepTradeReducer';
 
 let middleware = [thunk];
 
-if (process.env.ENV === 'debug') {
-  middleware = [...middleware, logger()];
+if (process.env.ENV !== 'production') {
+  middleware = [...middleware, createLogger()];
 }
 
 const reducer = combineReducers({
