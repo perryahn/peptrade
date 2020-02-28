@@ -1,5 +1,5 @@
 import React, {
-  useEffect, useState,
+  useState,
 } from 'react';
 import PropTypes from 'prop-types';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -38,10 +38,6 @@ export const SlideFeed = ({
     },
     interval,
   });
-
-  useEffect(() => {
-    console.log(activeIdx);
-  }, [activeIdx]);
 
   const variants = {
     enter: {

@@ -12,10 +12,10 @@ export const PepTrade = () => {
 
   const { startedRoulette } = useSelector((state) => state.pepTrade);
 
-  const { result, fetching } = useFetch({
+  useFetch({
     url: '/Api/sp500',
-    fetchingSyncCallback: () => dispatch(setSpFeedFetching(fetching)),
-    resultSyncCallback: () => dispatch(setSpFeed(result)),
+    fetchingSyncCallback: (data) => dispatch(setSpFeedFetching(data)),
+    resultSyncCallback: (data) => dispatch(setSpFeed(data)),
   });
 
   // reset roulette on cleanup

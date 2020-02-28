@@ -11,7 +11,7 @@ import {
 } from '../actions/homeActions';
 
 import {
-  setAccount, setAccountActivities, setPositions,
+  setAccount,
 } from '../../account/actions/accountActions';
 
 const propTypes = {
@@ -28,35 +28,10 @@ export const Main = ({ match }) => {
     dispatch(setView(match.params.view || 'peptrade'));
   }, [match.params.view]);
 
-  const { result: accountData } = useFetch({
+  useFetch({
     url: '/Api/Account',
+    resultSyncCallback: (data) => dispatch(setAccount(data)),
   });
-
-  const { result: activityData } = useFetch({
-    url: '/Api/Activities',
-  });
-
-  const { result: positionData } = useFetch({
-    url: '/Api/Positions',
-  });
-
-  useEffect(() => {
-    if (accountData) {
-      dispatch(setAccount(accountData));
-    }
-  }, [accountData]);
-
-  useEffect(() => {
-    if (activityData) {
-      dispatch(setAccountActivities(activityData));
-    }
-  }, [activityData]);
-
-  useEffect(() => {
-    if (positionData) {
-      dispatch(setPositions(positionData));
-    }
-  }, [positionData]);
 
   return (
     <div id="Main">

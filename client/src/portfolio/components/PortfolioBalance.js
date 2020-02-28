@@ -9,7 +9,7 @@ export const PortfolioBalance = () => {
   return (
     <div className="pa_portfolio_badge">
       <Badge label="Equity">
-        <span>{dollar(account.portfolio_value)}</span>
+        <span>{dollar((account || {}).portfolio_value)}</span>
       </Badge>
     </div>
   );

@@ -85,13 +85,13 @@ export const useFetch = ({
 
   useEffect(() => {
     if (fetchingSyncCallback) {
-      fetchingSyncCallback();
+      fetchingSyncCallback(fetching);
     }
   }, [fetching]);
 
   useEffect(() => {
     if (resultSyncCallback) {
-      resultSyncCallback();
+      resultSyncCallback(result);
     }
   }, [result]);
 

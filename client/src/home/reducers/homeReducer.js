@@ -1,5 +1,5 @@
 export const reducer = (state = {
-  view: 'portfolio',
+  view: null,
 }, action) => {
   switch (action.type) {
     case 'SET_VIEW': {

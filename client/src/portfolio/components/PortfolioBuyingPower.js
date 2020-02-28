@@ -9,7 +9,7 @@ export const PortfolioBuyingPower = () => {
   return (
     <div className="pa_portfolio_badge">
       <Badge label="Buying Power">
-        <span>{dollar(account.buying_power)}</span>
+        <span>{dollar((account || {}).buying_power)}</span>
       </Badge>
     </div>
   );
