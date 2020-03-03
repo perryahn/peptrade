@@ -16,6 +16,7 @@
     "data.js": "^0.12.11",
     "express": "^4.17.1",
     "framer-motion": "^1.8.4",
+    "moment": "^2.24.0",
     "morgan": "^1.9.1",
     "prop-types": "^15.7.2",
     "react": "^16.12.0",

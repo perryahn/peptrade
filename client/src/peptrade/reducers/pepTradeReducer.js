@@ -3,9 +3,10 @@ export const reducer = (state = {
   fetching: false,
   startedRoulette: false,
   rouletteDone: false,
-  ticks: 25,
+  ticks: 20,
   interval: 50,
   currIdx: 0,
+  order: null,
 }, action) => {
   switch (action.type) {
     case 'START_ROULETTE': {
@@ -33,9 +34,10 @@ export const reducer = (state = {
         ...state,
         startedRoulette: false,
         rouletteDone: false,
-        ticks: 30,
+        ticks: 20,
         currIdx: 0,
         interval: 50,
+        order: null,
       };
     }
     case 'SET_VIEW': {
@@ -44,13 +46,20 @@ export const reducer = (state = {
           ...state,
           startedRoulette: false,
           rouletteDone: false,
-          ticks: 30,
+          ticks: 20,
           currIdx: 0,
           interval: 50,
+          order: null,
         };
       }
 
       return state;
+    }
+    case 'ORDER_COMPLETE': {
+      return {
+        ...state,
+        order: action.payload,
+      };
     }
     case 'SET_SP_FEED_FETCHING': {
       return {

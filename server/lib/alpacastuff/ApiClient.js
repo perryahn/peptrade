@@ -9,7 +9,7 @@ class ApiClient {
     });
   }
 
-  async account() {
+  async getAccount() {
     let result = null;
 
     await this.alpaca.getAccount().then((res) => {
@@ -19,7 +19,7 @@ class ApiClient {
     return result;
   }
 
-  async activities(types) {
+  async getActivities(types) {
     let result = null;
 
     await this.alpaca.getAccountActivities({
@@ -31,17 +31,22 @@ class ApiClient {
     return result;
   }
 
-  async orders() {
+  async getOrders({
+    startDate, endDate,
+  }) {
     let result = null;
 
-    await this.alpaca.getOrders().then((res) => {
+    await this.alpaca.getOrders({
+      after: startDate,
+      until: endDate,
+    }).then((res) => {
       result = res;
     });
 
     return result;
   }
 
-  async positions() {
+  async getPositions() {
     let result = null;
 
     await this.alpaca.getPositions().then((res) => {
@@ -51,7 +56,7 @@ class ApiClient {
     return result;
   }
 
-  async bars({
+  async getBars({
     symbols, start, end,
   }) {
     let result = null;
@@ -61,6 +66,15 @@ class ApiClient {
       start,
       end,
     }).then((res) => {
+      result = res;
+    });
+
+    return result;
+  }
+
+  async placeOrder(order) {
+    let result = null;
+    await this.alpaca.createOrder(order).then((res) => {
       result = res;
     });
 

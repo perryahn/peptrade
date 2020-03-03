@@ -24,4 +24,9 @@ export const setSpFeed = (data) => ({
   payload: data,
 });
 
+export const orderComplete = (data) => ({
+  type: 'ORDER_COMPLETE',
+  payload: data,
+});
+
 export default setSpFeed;

@@ -38,8 +38,12 @@ const fetchReducer = (state, action) => {
 export const useFetch = ({
   url, type, data,
   fetchingSyncCallback, resultSyncCallback,
+  doneCallback,
+  manuallyFetch = false,
 }) => {
-  const [{ result, fetching, error }, dispatch] = useReducer(
+  const [{
+    result, fetching, fetched, error,
+  }, dispatch] = useReducer(
     fetchReducer,
     {
       result: null,
@@ -55,11 +59,26 @@ export const useFetch = ({
 
       dispatch({ type: 'FETCH_START' });
 
+      let body = null;
+      let contentType = null;
+
+      if (typeof (data) === 'object') {
+        body = JSON.stringify(data);
+        contentType = 'application/json';
+      } else if (
+        typeof (data) === 'boolean'
+          || typeof (data) === 'number'
+          || typeof (data) === 'string'
+      ) {
+        body = data;
+        contentType = 'text/plain';
+      }
+
       fetch(url, {
-        body: data,
+        body,
         method: xType,
         headers: {
-          'Content-Type': 'application/json',
+          'Content-Type': contentType,
         },
       }).then((res) => {
         if (!res.ok) {
@@ -80,14 +99,22 @@ export const useFetch = ({
   ]);
 
   useEffect(() => {
-    fetchCallback();
-  }, [fetchCallback]);
+    if (!manuallyFetch) {
+      fetchCallback();
+    }
+  }, [fetchCallback, manuallyFetch]);
 
   useEffect(() => {
     if (fetchingSyncCallback) {
       fetchingSyncCallback(fetching);
     }
   }, [fetching]);
+
+  useEffect(() => {
+    if (doneCallback && fetched) {
+      doneCallback(result);
+    }
+  }, [fetched, result]);
 
   useEffect(() => {
     if (resultSyncCallback) {
@@ -98,7 +125,9 @@ export const useFetch = ({
   return {
     result,
     fetching,
+    fetched,
     error,
+    doFetch: fetchCallback,
   };
 };
 
