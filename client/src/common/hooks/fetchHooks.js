@@ -109,6 +109,10 @@ export const useFetch = ({
     return () => abortController.abort();
   }, [fetchCallback, manuallyFetch]);
 
+  /**
+   * TODO combine these separate effects
+   * - maybe callback based on fetch progress stage
+   * */
   useEffect(() => {
     if (fetchingSyncCallback) {
       fetchingSyncCallback(fetching);
