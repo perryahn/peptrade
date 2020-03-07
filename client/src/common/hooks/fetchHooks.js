@@ -53,7 +53,7 @@ export const useFetch = ({
     },
   );
 
-  const fetchCallback = useCallback(() => {
+  const fetchCallback = useCallback((abortController = new AbortController()) => {
     const doIt = async () => {
       const xType = type || 'GET';
 
@@ -80,6 +80,7 @@ export const useFetch = ({
         headers: {
           'Content-Type': contentType,
         },
+        signal: abortController.signal,
       }).then((res) => {
         if (!res.ok) {
           throw Error(res.statusText);
@@ -99,9 +100,13 @@ export const useFetch = ({
   ]);
 
   useEffect(() => {
+    const abortController = new AbortController();
+
     if (!manuallyFetch) {
-      fetchCallback();
+      fetchCallback(abortController);
     }
+
+    return () => abortController.abort();
   }, [fetchCallback, manuallyFetch]);
 
   useEffect(() => {
