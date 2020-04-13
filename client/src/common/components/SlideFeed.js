@@ -17,7 +17,7 @@ const propTypes = {
 };
 
 const defaultProps = {
-  interval: 950,
+  interval: 1000,
   children: null,
   className: '',
   height: 300,
